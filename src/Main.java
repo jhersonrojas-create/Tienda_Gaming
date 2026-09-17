@@ -18,11 +18,21 @@ public class Main {
         NumberFormat formatoCOP = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
         formatoCOP.setMaximumFractionDigits(0);
         // Productos precargados para que el menú no arranque vacío
-        miTienda.agregarProducto(new Periferico("P001", "Teclado Mecánico RGB", 189900, "Redragon", 15, "USB", false));
+        miTienda.agregarProducto(new Periferico("P001", "Teclado Mecánico RGB", 189900, "Redragon", 11, "USB", false));
+        miTienda.agregarProducto(new Periferico("P002", "Microfono (HyperX SoloCast 2)", 260000, "Hyperx", 4, "USB-C", false));
+        miTienda.agregarProducto(new Periferico("P003", "Cámara (Razer Kiyo V2 X)", 440000, "Razer", 8, "USB-A", false));
         miTienda.agregarProducto(new Componente("C001", "Procesador Intel Core i7", 1200000, "Intel", 10, 36, "LGA1200"));
+        miTienda.agregarProducto(new Componente("C002", "Procesador Ryzen 5 5600X", 1800000, "AMD", 10, 36, "AM4"));
+        miTienda.agregarProducto(new Componente("C003", "Tarjeta Gráfica NVIDIA RTX 3080", 2500000, "NVIDIA", 5, 24, "PCIe"));
+        miTienda.agregarProducto(new Componente("C004", "Memoria RAM DDR4 16GB", 800000, "Corsair", 15, 16, "DIMM"));
+        miTienda.agregarProducto(new Componente("C005", "Disco Duro SSD 1TB", 900000, "Kingston", 10, 12, "SATA"));
         miTienda.agregarProducto(new Consola("CO001", "PlayStation 5", 5000000, "Sony", 5, "PS5", true));
-        miTienda.agregarProducto(new Consola("CO002", "XBOX Series S", 1900000, "Microsoft", 4, "XBOX", true));
-        miTienda.agregarProducto(new Accesorio("A001", "Mouse Gamer", 300000, "Logitech", 20, "Mouse"));
+        miTienda.agregarProducto(new Consola("CO002", "PlayStation 4", 1000000, "Sony", 10, "PS4", true));
+        miTienda.agregarProducto(new Consola("CO003", "XBOX Series S", 1900000, "Microsoft", 4, "XBOX", true));
+        miTienda.agregarProducto(new Consola("CO004", "XBOX Series X", 4000000, "Microsoft", 3, "XBOX", true));
+        miTienda.agregarProducto(new Accesorio("A001", "Mouse (Logitech G502 Hero)", 300000, "Logitech", 20, "Mouse Gamer"));
+        miTienda.agregarProducto(new Accesorio("A002", "Audifonos (HyperX Cloud III)", 400000, "Hyperx", 9, "Audifonos Gamer"));
+
 
         while (opcion != 5) {
             System.out.println("\n--- MENÚ TIENDA GAMING ---");
