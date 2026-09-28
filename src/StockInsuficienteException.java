@@ -1,6 +1,0 @@
-/**
- * StockInsuficienteException
- */
-public class StockInsuficienteException {
-
-}
