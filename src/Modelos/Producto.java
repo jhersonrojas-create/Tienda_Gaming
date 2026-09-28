@@ -1,4 +1,5 @@
 package Modelos;
+import Excepciones.PrecioInvalidoException;
 
 public abstract class Producto {
     private String id;
@@ -10,9 +11,15 @@ public abstract class Producto {
 
     public abstract double calcularPrecioFinal();
     
-    public Producto(String id, String nombre, double precioBase, String marca, int stock) {
+    public Producto(String id, String nombre, double precioBase, String marca, int stock) throws PrecioInvalidoException {
+        if (precioBase < 0) {
+            throw new PrecioInvalidoException("El precio base no puede ser negativo");
+        }
+        if (precioBase == 0) {
+            throw new PrecioInvalidoException("El precio base no puede ser cero");
+        }
         this.id = id;
-        this.nombre = nombre;
+        this.nombre = nombre; 
         this.precioBase = precioBase;
         this.marca = marca;
         this.stock = stock;

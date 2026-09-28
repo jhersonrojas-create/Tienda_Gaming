@@ -1,10 +1,11 @@
 package Modelos;
+import Excepciones.PrecioInvalidoException;
 
 public class Consola extends Producto {
     private String tipoConsola;
     private boolean incluyeControl;
 
-    public Consola(String id, String nombre, double precioBase, String marca, int stock, String tipoConsola, boolean incluyeControl) {
+    public Consola(String id, String nombre, double precioBase, String marca, int stock, String tipoConsola, boolean incluyeControl) throws PrecioInvalidoException {
         super(id, nombre, precioBase, marca, stock);
         this.tipoConsola = tipoConsola;
         this.incluyeControl = incluyeControl;

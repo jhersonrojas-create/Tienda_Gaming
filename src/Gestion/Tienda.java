@@ -1,8 +1,9 @@
 package Gestion;
+import Excepciones.ProductoNoEncontradoException;
+import Excepciones.StockInsuficienteException;
 import Modelos.Producto;
-import java.util.List;
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class Tienda {
     private List<Producto> productos = new ArrayList<>();
@@ -18,6 +19,24 @@ public class Tienda {
     public List<Producto> getProductos() {
         return productos;
     }
+
+    public Producto buscarPorId(String id) throws ProductoNoEncontradoException {
+    for (Producto p : productos) {
+        if (p.getId().equalsIgnoreCase(id)) {
+            return p;
+        }
+    }
+    
+    throw new ProductoNoEncontradoException("Producto no encontrado con ID: " + id);
+}
+
+    public void venderProducto(String id, int cantidad) throws ProductoNoEncontradoException, StockInsuficienteException {
+    Producto p = buscarPorId(id);
+    if (p.getStock() < cantidad) {
+        throw new StockInsuficienteException("Stock insuficiente para el producto con ID: " + id);
+    }
+    p.setStock(p.getStock() - cantidad);
+}
 
 
 
@@ -55,3 +74,5 @@ public class Tienda {
 
     }
 }
+
+

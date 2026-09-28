@@ -1,0 +1,6 @@
+/**
+ * StockInsuficienteException
+ */
+public class StockInsuficienteException {
+
+}

@@ -1,10 +1,10 @@
 package Modelos;
-
+import Excepciones.PrecioInvalidoException;
 public class Periferico extends Producto {
     private String tipoConexion;
     private boolean inalambrico;
 
-    public Periferico(String id, String nombre, double precioBase, String marca, int stock, String tipoConexion, boolean inalambrico) {
+    public Periferico(String id, String nombre, double precioBase, String marca, int stock, String tipoConexion, boolean inalambrico) throws PrecioInvalidoException {
         super(id, nombre, precioBase, marca, stock);
         this.tipoConexion = tipoConexion;
         this.inalambrico = inalambrico;

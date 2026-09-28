@@ -1,9 +1,9 @@
 package Modelos;
-
+import Excepciones.PrecioInvalidoException;
 public class Accesorio extends Producto {
     private String categoria;
 
-    public Accesorio(String id, String nombre, double precioBase, String marca, int stock, String categoria) {
+    public Accesorio(String id, String nombre, double precioBase, String marca, int stock, String categoria) throws PrecioInvalidoException {
         super(id, nombre, precioBase, marca, stock);
         this.categoria = categoria;
     }

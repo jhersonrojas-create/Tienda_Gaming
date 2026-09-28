@@ -1,10 +1,10 @@
 package Modelos;
-
+import Excepciones.PrecioInvalidoException;
 public class Componente extends Producto {
     private int mesesGarantia;
     private String socketCompatibilidad;
 
-    public Componente(String id, String nombre, double precioBase, String marca, int stock, int mesesGarantia, String socketCompatibilidad) {
+    public Componente(String id, String nombre, double precioBase, String marca, int stock, int mesesGarantia, String socketCompatibilidad) throws PrecioInvalidoException {
         super(id, nombre, precioBase, marca, stock);
         this.mesesGarantia = mesesGarantia;
         this.socketCompatibilidad = socketCompatibilidad;

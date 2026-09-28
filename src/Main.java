@@ -1,14 +1,17 @@
 
+import Excepciones.PrecioInvalidoException;
+import Excepciones.ProductoNoEncontradoException;
+import Excepciones.StockInsuficienteException;
 import Gestion.Tienda;
-import Modelos.Producto;
-import Modelos.Periferico;
+import Modelos.Accesorio;
 import Modelos.Componente;
 import Modelos.Consola;
-import Modelos.Accesorio;
-import java.util.List;
-import java.util.Scanner;
+import Modelos.Periferico;
+import Modelos.Producto;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +20,7 @@ public class Main {
         int opcion = 0;
         NumberFormat formatoCOP = NumberFormat.getCurrencyInstance(new Locale("es", "CO"));
         formatoCOP.setMaximumFractionDigits(0);
-        // Productos precargados para que el menú no arranque vacío
+      try{  // Productos precargados para que el menú no arranque vacío
         miTienda.agregarProducto(new Periferico("P001", "Teclado Mecánico RGB", 189900, "Redragon", 11, "USB", false));
         miTienda.agregarProducto(new Periferico("P002", "Microfono (HyperX SoloCast 2)", 260000, "Hyperx", 4, "USB-C", false));
         miTienda.agregarProducto(new Periferico("P003", "Cámara (Razer Kiyo V2 X)", 440000, "Razer", 8, "USB-A", false));
@@ -32,15 +35,18 @@ public class Main {
         miTienda.agregarProducto(new Consola("CO004", "XBOX Series X", 4000000, "Microsoft", 3, "XBOX", true));
         miTienda.agregarProducto(new Accesorio("A001", "Mouse (Logitech G502 Hero)", 300000, "Logitech", 20, "Mouse Gamer"));
         miTienda.agregarProducto(new Accesorio("A002", "Audifonos (HyperX Cloud III)", 400000, "Hyperx", 9, "Audifonos Gamer"));
+    }catch (PrecioInvalidoException e) {
+        System.out.println("Error al cargar productos iniciales: " + e.getMessage());
+    }
 
-
-        while (opcion != 5) {
+        while (opcion != 6) {
             System.out.println("\n--- MENÚ TIENDA GAMING ---");
             System.out.println("1. Agregar producto");
             System.out.println("2. Buscar productos por categoría");
             System.out.println("3. Ver valor total del inventario");
             System.out.println("4. Ver todos los productos");
-            System.out.println("5. Salir");
+            System.out.println("5. Vender producto");
+            System.out.println("6. Salir");
             System.out.print("Elige una opción: ");
             opcion = sc.nextInt();
             sc.nextLine(); 
@@ -63,7 +69,7 @@ public class Main {
                     System.out.print("Stock: ");
                     int stock = sc.nextInt();
                     sc.nextLine();
-
+                try {
                     if (tipo == 1) {
                         System.out.print("Tipo de conexión: ");
                         String tipoConexion = sc.nextLine();
@@ -93,7 +99,10 @@ public class Main {
                         System.out.println("Tipo no válido.");
                     }
                     System.out.println("Producto agregado con éxito.");
-                    break;
+                    
+                } catch (PrecioInvalidoException e) {
+                    System.out.println("Error al agregar el producto: " + e.getMessage());
+                } break;
 
                 case 2:
                     System.out.print("¿Qué categoría buscas? (Periferico, Componente, Consola, Accesorio): ");
@@ -122,6 +131,19 @@ public class Main {
                     break;
 
                 case 5:
+                    System.out.print("Ingresa el ID del producto a vender: ");
+                    String idVender = sc.nextLine();
+                    System.out.print("Ingresa la cantidad a vender: ");
+                    int cantidadVender = Integer.parseInt(sc.nextLine());
+                    try {
+                        miTienda.venderProducto(idVender, cantidadVender);
+                        System.out.println("Producto vendido con éxito.");
+                    } catch (ProductoNoEncontradoException | StockInsuficienteException e) {
+                        System.out.println("Error al vender el producto: " + e.getMessage());
+                    }
+                    break;
+
+                case 6:
                     System.out.println("Saliendo...");
                     break;
 
